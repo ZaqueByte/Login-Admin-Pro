@@ -1,0 +1,17 @@
+-- 1. CRIAÇÃO DO BANCO DE DADOS
+-- Define o conjunto de caracteres para suportar acentuação (opcional, mas recomendado)
+CREATE DATABASE IF NOT EXISTS `painel_admin` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+
+-- Seleciona o banco de dados para que os comandos seguintes sejam executados nele
+USE `painel_admin`;
+
+-- 2. CRIAÇÃO DA TABELA DE USUÁRIOS
+-- DROP TABLE IF EXISTS `usuarios`; -- Opcional: Descomente para apagar a tabela antes de criar (útil em testes)
+
+CREATE TABLE `usuarios` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `login` VARCHAR(100) NOT NULL UNIQUE, -- Login deve ser único (UNIQUE)
+  `senha` VARCHAR(255) NOT NULL,        -- Campo Varchar(255) é OBRIGATÓRIO para armazenar hashes longos (password_hash)
+  `criado_em` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
